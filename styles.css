@@ -1,0 +1,137 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f8f8fb;
+  --card-bg: #000000;
+  --card-text: #ffffff;
+  --panel-bg: #ffffff;
+  --panel-text: #111111;
+  --border-radius-lg: 24px;
+  --border-radius-sm: 16px;
+  --max-width: 720px;
+  --transition-fast: 0.2s ease;
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  font-family: var(--font-main);
+  color: #111111;
+}
+
+.faq {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 32px 28px 40px;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.faq-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.faq-header p {
+  margin: 0 0 24px;
+  color: #4a4a4a;
+  font-size: 14px;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Item layout */
+
+.accordion-item {
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+}
+
+/* trigger */
+
+.accordion-trigger {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  color: var(--card-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-fast),
+    transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.accordion-trigger span:first-child {
+  text-align: left;
+}
+
+.accordion-trigger:focus-visible {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #111111;
+}
+
+.accordion-trigger:hover {
+  background: #111111;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.accordion-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: transform var(--transition-fast);
+}
+
+/* panel */
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+  transition: max-height 0.24s ease;
+}
+
+.accordion-panel p {
+  margin: 0;
+  padding: 14px 18px 18px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* open state */
+
+.accordion-item.active .accordion-panel {
+  max-height: 180px; /* enough for 3–4 lines; adjust per content */
+}
+
+.accordion-item.active .accordion-trigger {
+  border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
